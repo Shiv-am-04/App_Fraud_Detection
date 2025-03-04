@@ -6,3 +6,4 @@ google_play_scraper
 dotenv
 pandas
 requests
+langchain_groq
