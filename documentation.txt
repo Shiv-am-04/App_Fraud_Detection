@@ -1,0 +1,48 @@
+## Overview ##
+
+This system evaluates the authenticity of Google Play Store applications using a language model (LLM). 
+It classifies apps as either fraudulent or genuine based on various factors such as app details, user reviews, permissions, and privacy analysis.
+
+## Data Preparation ##
+
+The script loads data from two JSON files: fraud-apps.json and genuine-apps.json.
+It combines them into a single dataset containing app names and their authenticity labels.
+
+## Authentication and App Details Retrieval ##
+
+- Uses the Authentication_Info class to fetch app details, including:
+  1.App metadata (name, developer info, downloads, rating, etc.) and user reviews using google_play_scraper library.
+  2.App permissions extracted using beautifulsoup library
+  3.Self Privacy-related analysis based on whether the data is encrypted or not and is data shared with third party apps.
+
+- A structured prompt is designed for the LLM to analyze app details and classify it as either:
+  - Fraud – if the app exhibits suspicious behavior.
+  - Genuine – if the app appears legitimate.
+- The LLM outputs a dictionary with:
+   {
+    "type": "fraud" or "genuine".
+    "reason": A concise explanation (max 300 characters).
+   }
+
+## Classification Process ##
+
+- Each app is processed iteratively, and the LLM provides authenticity predictions.
+  If data retrieval fails, predefined app details are used as fallback.
+
+## Evaluation ## 
+
+- The model successfully categorizes apps using LLM-based reasoning.
+  The authenticity results can be analyzed further to assess classification accuracy.
+
+## Results ##
+
+- For 'fraud' precision is high but recall is very low
+- For 'genuine' precision is little low but recall is high
+- Accuracy is also desriable , more better model can produce more better results.
+
+
+#### Furthur Development ####
+
+- Using more robust model like gpt-4o and deepseek-r1 can give more better results
+- Using a pre trained machine learning model for prediction and providing it to the LLM to take this into account
+  before analysis can improve the performance by far.
