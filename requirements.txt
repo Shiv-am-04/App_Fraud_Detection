@@ -1,0 +1,8 @@
+beautifulsoup4
+langchain
+streamlit
+langchain_community
+google_play_scraper
+dotenv
+pandas
+requests
